@@ -26,7 +26,7 @@ router.get('/:id', (req, res) => {
         id: req.params.id
       },
       include: [
-        Category,{
+        {
           model:Product,
           through: ProductTag
         }
@@ -39,7 +39,9 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
   // create a new tag
   
-  Tag.create({})
+  Tag.create(req.body, {
+        
+    })
     .then((response) => res.json(response)) 
     .catch((err) => res.status(400).json(err));
 });
